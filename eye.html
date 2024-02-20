@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eye</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(242, 242, 242);
+      }
+      section {
+        display: flex;
+        gap: 20px;
+      }
+      .ball {
+        width: 140px;
+        height: 140px;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .track,
+      .track2 {
+        position: relative;
+        background-color: black;
+        height: 80%;
+        width: 80%;
+        border-radius: 50%;
+        padding: 14px;
+      }
+      .eye,
+      .eye2 {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="ball">
+        <div class="track">
+          <div class="eye"></div>
+        </div>
+      </div>
+      <div class="ball">
+        <div class="track2">
+          <div class="eye2"></div>
+        </div>
+      </div>
+    </section>
+    <script>
+      // window.addEventListener("mousemove", (e) => {
+      //   const track2 = document.querySelector(".track2");
+      //   const track = document.querySelector(".track");
+      //   let clientX = e.clientX;
+      //   let clientY = e.clientY;
+      //   //bring scale to center
+      //   const MounseX = window.innerWidth / 2 - clientX;
+      //   const MouseY = window.innerHeight / 2 - clientY;
+      //   console.log(MounseX, MouseY);
+      //   // track.style.transform = `translate(${MounseX}px, ${MouseY}px)`;
+
+      //   const radian = Math.atan2(MouseY, MounseX);
+      //   const angle = (radian * 180) / Math.PI;
+      //   const eyeX = Math.cos(radian) * 50;
+      //   const eyeY = Math.sin(radian) * 50;
+      //   track.style.transform = `rotate(${angle}deg) translate(${eyeX/8}px, ${eyeY/8}px)`;
+      //   track2.style.transform = `rotate(${angle}deg ) translate(${eyeX/8}px, ${eyeY/8}px)`;
+      // });
+      window.addEventListener("mousemove", (e) => {
+        let mouseX = e.clientX;
+        let mouseY = e.clientY;
+
+        let deltaX = mouseX - window.innerWidth / 2;
+        let deltaY = mouseY - window.innerHeight / 2;
+
+        let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+        const track = document.querySelector(".track");
+        const track2 = document.querySelector(".track2");
+
+        track.style.transform = `rotate(${angle - 180}deg)`;
+        track2.style.transform = `rotate(${angle - 180}deg)`;
+      });
+    </script>
+  </body>
+</html>
