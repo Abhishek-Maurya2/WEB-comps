@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magnetic button</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: poppins, sans-serif;
+        transition: all 0.3s linear;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+        background: linear-gradient(#68dcff, #ff8ffd);
+      }
+      p {
+        margin: 2rem;
+        font-size: 2rem;
+      }
+      .container {
+        border: solid 1px #ffffffbb;
+        padding: 4rem 8rem;
+        border-radius: 1rem;
+      }
+      .btn {
+        position: relative;
+        padding: 1rem 2rem;
+        background: #ffffff;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="btn" data-moveBtn>Click Me</button>
+    </div>
+    <p>Magnetic Button</p>
+    <script>
+      const btn = document.querySelector("[data-moveBtn]");
+      const button = document.querySelector(".btn");
+      const container = document.querySelector(".container");
+      container.addEventListener("mousemove", (e) => {
+        // i want to get the x and y position of the mouse only inside of the container.
+        const posx = e.clientX - window.innerWidth / 2;
+        const posy = e.clientY - window.innerHeight / 2;
+        console.log(posx, posy);
+        btn.style.transform = `translate(${posx / 2}px, ${posy / 2}px)`;
+      });
+      container.addEventListener("mouseleave", () => {
+        btn.style.transform = `translate(0px, 0px)`;
+      });
+    </script>
+  </body>
+</html>
