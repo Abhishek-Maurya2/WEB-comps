@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor lerp</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+        font-family: Poppins, sans-serif;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #000000; */
+        background: linear-gradient(45deg, #141e30, #396393, #3a81d1);
+      }
+      .cursor {
+        position: fixed;
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.3s linear;
+        mix-blend-mode: difference;
+      }
+      p {
+        color: #ffffffa1;
+        font-size: 5rem;
+      }
+      .circle, .circle2 {
+        position: fixed;
+        top: 120px;
+        right: 150px;
+        height: 70vh;
+        width: 70vh;
+        border: 1px solid #ffffff4d;
+        border-radius: 50%;
+        animation: rotate 20s linear infinite;
+        z-index: -1;
+      }
+      .circle2 {
+        top: 230px;
+        right: 500px;
+        height: 50vh;
+        width: 50vh;
+        animation: rotate 5s linear infinite;
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg) translate(40px);
+        }
+        100% {
+          transform: rotate(360deg) translate(40px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" data-cursor></div>
+    <div class="circle"></div>
+    <div class="circle2"></div>
+    <p>Custom Cursor</p>
+    <script>
+      const cursor = document.querySelector("[data-cursor]");
+      window.addEventListener("mousemove", function (e) {
+        const posx = e.clientX;
+        const posy = e.clientY;
+
+        cursor.style.left = `${posx}px`;
+        cursor.style.top = `${posy}px`;
+      });
+      const text = document.querySelector("p");
+      text.addEventListener("mouseover", function () {
+        cursor.style.transform = "scale(2)";
+      });
+      text.addEventListener("mouseleave", function () {
+        cursor.style.transform = "scale(1)";
+      });
+    </script>
+  </body>
+</html>
