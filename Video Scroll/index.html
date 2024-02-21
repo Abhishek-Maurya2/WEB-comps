@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Scroll</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: all, 0.5s, ease-in-out;
+        font-family: Poppins, sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+        margin: 0 1rem;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10000;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #dbdad5;
+      }
+      .hero {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      .videoContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 50%;
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      video {
+        height: 100vh;
+        width: 300vh;
+        object-fit: fill;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="left">Video Scroll</div>
+      <div class="right">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="videoContainer">
+        <video src="./sample.mp4" autoplay loop></video>
+      </div>
+    </section>
+    <section></section>
+    <section></section>
+    <script>
+      const box = document.querySelector(".videoContainer");
+      const video = document.querySelector("video");
+      window.addEventListener("scroll", (e) => {
+        const scroll = window.scrollY;
+        box.style.height = 50 + scroll * 0.08 + "%";
+        box.style.width = 50 + scroll * 0.08 + "%";
+        // video.style.width = 100 + scroll * 0.1 + "%";
+      });
+    </script>
+  </body>
+</html>
